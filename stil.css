@@ -132,7 +132,9 @@ p { margin: 0 0 1em; }
 
 .yan-yana { display: grid; gap: 32px; align-items: center; grid-template-columns: 1fr 1fr; }
 .yan-yana img { border-radius: var(--yuvarlak); box-shadow: var(--golge); }
-@media (max-width: 760px) { .yan-yana { grid-template-columns: 1fr; } }
+.yan-yana.aile-blok { grid-template-columns: 1.8fr 1fr; gap: 28px; width: min(1240px, 100% - 32px); }
+.karakter .sevdikleri { font-weight: 800; color: var(--renk-koyu, var(--renk)); margin: 0 0 4px; }
+@media (max-width: 760px) { .yan-yana, .yan-yana.aile-blok { grid-template-columns: 1fr; } }
 
 /* Videolar */
 .video-kutu { position: relative; aspect-ratio: 16 / 9; background: #1f3a18; }
