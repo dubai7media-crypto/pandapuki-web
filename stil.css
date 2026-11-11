@@ -78,6 +78,8 @@ p { margin: 0 0 1em; }
 .dugme-yt { background: var(--kirmizi); color: #fff; }
 .dugme-acik { background: #fff; color: var(--bambu-koyu); }
 .dugme-yt svg { width: 26px; height: 26px; }
+.dugme-ig { background: linear-gradient(45deg, #f09433, #dc2743 50%, #bc1888); color: #fff; }
+.dugme-ig svg { width: 22px; height: 22px; }
 
 /* Kapak */
 .kapak {
