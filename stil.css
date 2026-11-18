@@ -67,6 +67,23 @@ p { margin: 0 0 1em; }
   .menu a { padding: 12px 16px; }
 }
 
+/* Dil seçimi */
+.dil { display: flex; gap: 2px; background: var(--bambu-acik); border-radius: 999px; padding: 3px; }
+.dil a {
+  display: block; padding: 4px 9px; border-radius: 999px; font-size: .85rem;
+  font-weight: 900; text-decoration: none; color: var(--bambu-koyu);
+}
+.dil a:hover { background: #fff; }
+.dil a[aria-current="true"] { background: var(--bambu); color: #fff; }
+.dil-notu {
+  background: #fff; border-left: 6px solid var(--sari); border-radius: 14px;
+  padding: 12px 16px; max-width: 62ch; box-shadow: var(--golge); color: var(--soluk);
+}
+@media (max-width: 760px) {
+  .ust .menu-dugme { margin-left: auto; }
+  .dil a { padding: 4px 7px; }
+}
+
 /* Düğmeler */
 .dugme {
   display: inline-flex; align-items: center; gap: 10px;

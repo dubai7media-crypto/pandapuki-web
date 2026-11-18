@@ -11,6 +11,14 @@ document.querySelectorAll(".menu-dugme").forEach(function (d) {
 
 // Videoları listele (liste: videolar-listesi.js)
 (function () {
+  var dil = (document.documentElement.lang || "tr").slice(0, 2);
+  var METIN = {
+    tr: { yakinda: "İlk bölüm çok yakında!", haber: "Yeni bölümler yayınlandığında haber almak için YouTube kanalımıza abone olabilirsiniz.", abone: "YouTube'da abone ol" },
+    en: { yakinda: "The first episode is coming soon!", haber: "Subscribe to our YouTube channel to hear when new episodes come out.", abone: "Subscribe on YouTube" },
+    ru: { yakinda: "Первая серия совсем скоро!", haber: "Подпишитесь на наш YouTube-канал, чтобы узнать о выходе новых серий.", abone: "Подписаться на YouTube" }
+  };
+  if (!METIN[dil]) dil = "tr";
+  var M = METIN[dil];
   var hedefler = document.querySelectorAll("[data-videolar]");
   if (!hedefler.length) return;
   var liste = (window.VIDEOLAR || []).filter(function (v) { return v && v.id; });
@@ -22,18 +30,19 @@ document.querySelectorAll(".menu-dugme").forEach(function (d) {
     if (!secilen.length) {
       hedef.outerHTML =
         '<div class="bos-video">' +
-        '<img src="img/apple-touch-icon.png" alt="" width="140" height="140">' +
-        "<h3>İlk bölüm çok yakında!</h3>" +
-        "<p>Yeni bölümler yayınlandığında haber almak için YouTube kanalımıza abone olabilirsiniz.</p>" +
-        '<a class="dugme dugme-yt" href="https://www.youtube.com/@pandapukitv?sub_confirmation=1" target="_blank" rel="noopener">YouTube\'da abone ol</a>' +
+        '<img src="/img/apple-touch-icon.png" alt="" width="140" height="140">' +
+        "<h3>" + M.yakinda + "</h3>" +
+        "<p>" + M.haber + "</p>" +
+        '<a class="dugme dugme-yt" href="https://www.youtube.com/@pandapukitv?sub_confirmation=1" target="_blank" rel="noopener">' + M.abone + "</a>" +
         "</div>";
       document.querySelectorAll("[data-bos-gizle]").forEach(function (e) { e.hidden = true; });
       return;
     }
 
     hedef.innerHTML = secilen.map(function (v) {
-      var baslik = (v.baslik || "Panda Puki ve Ailesi").replace(/</g, "&lt;");
-      var aciklama = (v.aciklama || "").replace(/</g, "&lt;");
+      // İsteğe bağlı çeviri: baslik_en, aciklama_ru gibi alanlar; yoksa Türkçesi görünür
+      var baslik = (v["baslik_" + dil] || v.baslik || "Panda Puki ve Ailesi").replace(/</g, "&lt;");
+      var aciklama = (v["aciklama_" + dil] || v.aciklama || "").replace(/</g, "&lt;");
       return (
         '<article class="kart">' +
         '<div class="video-kutu">' +
